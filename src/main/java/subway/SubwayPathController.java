@@ -87,7 +87,16 @@ public class SubwayPathController {
             return true;
         }
 
+        List<String> paths = selectFindStation(pathMenu);
+        List<Integer> weights = SectionRepository.getTotalWeight(paths);
+        outputView.printPathResult(paths, weights);
         return false;
+    }
+
+    private List<String> selectFindStation(PathMenu pathMenu) {
+        String startStation = validateStation(inputView.readStartStation(scanner));
+        String arrivalStation = validateStation(inputView.readArrivalStation(scanner));
+        return getResultPerMenu(pathMenu, startStation, arrivalStation);
     }
 
     private String validateStation(String station) {
@@ -103,10 +112,10 @@ public class SubwayPathController {
 
     private List<String> getResultPerMenu(PathMenu pathMenu, String startStation, String arrivalStation) {
         if (pathMenu.equals(PathMenu.PATH_MENU1)) {
-
+            return findShortestPath.getShortestPathByDistance(startStation, arrivalStation);
         }
         if (pathMenu.equals(PathMenu.PATH_MENU2)) {
-
+            return findShortestPath.getShortestPathByTime(startStation, arrivalStation);
         }
 
         return null;
