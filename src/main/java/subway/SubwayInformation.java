@@ -11,14 +11,14 @@ public enum SubwayInformation {
 
     private final String line;
     private final List<String> stations;
-    private final List<Integer> times;
     private final List<Integer> distances;
+    private final List<Integer> times;
 
-    SubwayInformation(String line, List<String> stations, List<Integer> times, List<Integer> distances) {
+    SubwayInformation(String line, List<String> stations, List<Integer> distances, List<Integer> times) {
         this.line = line;
         this.stations = stations;
-        this.times = times;
         this.distances = distances;
+        this.times = times;
     }
 
     public String getLine() {
@@ -29,11 +29,11 @@ public enum SubwayInformation {
         return stations;
     }
 
-    public List<Integer> getTimes() {
-        return times;
-    }
-
     public List<Integer> getDistances() {
         return distances;
+    }
+
+    public List<Integer> getTimes() {
+        return times;
     }
 }
