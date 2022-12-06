@@ -96,6 +96,7 @@ public class SubwayPathController {
     private List<String> selectFindStation(PathMenu pathMenu) {
         String startStation = validateStation(inputView.readStartStation(scanner));
         String arrivalStation = validateStation(inputView.readArrivalStation(scanner));
+
         return getResultPerMenu(pathMenu, startStation, arrivalStation);
     }
 
@@ -111,6 +112,10 @@ public class SubwayPathController {
     }
 
     private List<String> getResultPerMenu(PathMenu pathMenu, String startStation, String arrivalStation) {
+        if (startStation.equals(arrivalStation)) {
+            ExceptionMessage.INPUT_SAME_STATION.throwException();
+            return null;
+        }
         if (pathMenu.equals(PathMenu.PATH_MENU1)) {
             return findShortestPath.getShortestPathByDistance(startStation, arrivalStation);
         }
