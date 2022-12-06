@@ -70,7 +70,7 @@ public class SubwayPathController {
             ExceptionMessage.INPUT_NONE.throwException();
         }
 
-        MainMenu selectMainMenu = isExistMainMenu(selectMenu);
+        MainMenu selectMainMenu = MainMenu.getMenu(selectMenu);
         if (selectMainMenu == null) {
             ExceptionMessage.INPUT_WRONG_MAIN_MENU.throwException();
         }
@@ -80,10 +80,6 @@ public class SubwayPathController {
 
     private boolean isEmpty(String selectMenu) {
         return selectMenu.isEmpty();
-    }
-
-    private MainMenu isExistMainMenu(String selectMenu) {
-        return MainMenu.getMenu(selectMenu);
     }
 
     private PathMenu validatePathMenu(String selectMenu) {
