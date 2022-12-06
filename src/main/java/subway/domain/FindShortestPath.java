@@ -1,7 +1,10 @@
 package subway.domain;
 
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
+
+import java.util.List;
 
 public class FindShortestPath {
     WeightedMultigraph<String, DefaultWeightedEdge> timeGraph = new WeightedMultigraph(DefaultWeightedEdge.class);
@@ -18,5 +21,10 @@ public class FindShortestPath {
 
     public void addDistanceEdgeWeight(String station1, String station2, int distanceWeight) {
         distanceGraph.setEdgeWeight(distanceGraph.addEdge(station1, station2), distanceWeight);
+    }
+
+    public List<String> getShortestPathByTime(String station1, String station2) {
+        DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(timeGraph);
+        return dijkstraShortestPath.getPath(station1, station2).getVertexList();
     }
 }
