@@ -1,6 +1,5 @@
 package subway;
 
-import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
@@ -21,12 +20,34 @@ public class SubwayPathController {
 
     public void startSearchSubwayPath() {
         while (true) {
-            selectMenu();
+            MainMenu menu = validateMainMenu(selectMenu());
+            System.out.println(menu);
         }
     }
 
     private String selectMenu() {
         outputView.printMainMenu();
         return inputView.readSelectMenu(scanner);
+    }
+
+    private MainMenu validateMainMenu(String selectMenu) {
+        if (isEmpty(selectMenu)) {
+            ExceptionMessage.INPUT_NONE.throwException();
+        }
+
+        MainMenu selectMainMenu = isExistMenu(selectMenu);
+        if (selectMainMenu == null) {
+            ExceptionMessage.INPUT_WRONG_MAIN_MENU.throwException();
+        }
+
+        return selectMainMenu;
+    }
+
+    private boolean isEmpty(String selectMenu) {
+        return selectMenu.isEmpty();
+    }
+
+    private MainMenu isExistMenu(String selectMenu) {
+        return MainMenu.getMenu(selectMenu);
     }
 }
