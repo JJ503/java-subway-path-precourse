@@ -61,7 +61,8 @@ public class SubwayPathController {
     private boolean selectMenuResult() {
         MainMenu mainMenu = validateMainMenu(selectMainMenu());
         if (mainMenu.equals(MainMenu.MAIN_MENU1)) {
-
+            selectPathMethod();
+            return true;
         }
 
         return false;
@@ -73,15 +74,34 @@ public class SubwayPathController {
     }
 
     private void selectPathMethod() {
-        boolean menuState = true;
+        boolean menuState = false;
 
-        while (menuState) {
-
+        while (!menuState) {
+            menuState = selectPathMenuResult();
         }
     }
 
     private boolean selectPathMenuResult() {
         PathMenu pathMenu = validatePathMenu(selectPathMenu());
+        if (pathMenu.equals(PathMenu.PATH_MENU3)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private String validateStation(String station) {
+        if (isEmpty(station)) {
+            ExceptionMessage.INPUT_NONE.throwException();
+        }
+        if (StationRepository.isNotExistStation(station)) {
+            ExceptionMessage.INPUT_NOT_EXIST_STATION.throwException();
+        }
+
+        return station;
+    }
+
+    private List<String> getResultPerMenu(PathMenu pathMenu, String startStation, String arrivalStation) {
         if (pathMenu.equals(PathMenu.PATH_MENU1)) {
 
         }
@@ -89,7 +109,7 @@ public class SubwayPathController {
 
         }
 
-        return false;
+        return null;
     }
 
     private String selectPathMenu() {
