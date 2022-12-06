@@ -27,16 +27,41 @@ public class SubwayPathController {
     }
 
     private boolean selectMenuResult() {
-        MainMenu menu = validateMainMenu(selectMenu());
-        if (menu.equals(MainMenu.MAIN_MENU1)) {
+        MainMenu mainMenu = validateMainMenu(selectMainMenu());
+        if (mainMenu.equals(MainMenu.MAIN_MENU1)) {
 
         }
 
         return false;
     }
 
-    private String selectMenu() {
+    private String selectMainMenu() {
         outputView.printMainMenu();
+        return inputView.readSelectMenu(scanner);
+    }
+
+    private void selectPathMethod() {
+        boolean menuState = true;
+
+        while (menuState) {
+
+        }
+    }
+
+    private boolean selectPathMenuResult() {
+        PathMenu pathMenu = validatePathMenu(selectPathMenu());
+        if (pathMenu.equals(PathMenu.PATH_MENU1)) {
+
+        }
+        if (pathMenu.equals(PathMenu.PATH_MENU2)) {
+
+        }
+
+        return false;
+    }
+
+    private String selectPathMenu() {
+        outputView.printPathMenu();
         return inputView.readSelectMenu(scanner);
     }
 
@@ -45,7 +70,7 @@ public class SubwayPathController {
             ExceptionMessage.INPUT_NONE.throwException();
         }
 
-        MainMenu selectMainMenu = isExistMenu(selectMenu);
+        MainMenu selectMainMenu = isExistMainMenu(selectMenu);
         if (selectMainMenu == null) {
             ExceptionMessage.INPUT_WRONG_MAIN_MENU.throwException();
         }
@@ -57,7 +82,20 @@ public class SubwayPathController {
         return selectMenu.isEmpty();
     }
 
-    private MainMenu isExistMenu(String selectMenu) {
+    private MainMenu isExistMainMenu(String selectMenu) {
         return MainMenu.getMenu(selectMenu);
+    }
+
+    private PathMenu validatePathMenu(String selectMenu) {
+        if (isEmpty(selectMenu)) {
+            ExceptionMessage.INPUT_NONE.throwException();
+        }
+
+        PathMenu selectPathMenu = PathMenu.getMenu(selectMenu);
+        if (selectPathMenu == null) {
+            ExceptionMessage.INPUT_WRONG_PATH_MENU.throwException();
+        }
+
+        return selectPathMenu;
     }
 }
