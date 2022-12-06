@@ -20,12 +20,23 @@ public class SubwayPathController {
         for (SubwayInformation subwayInformation : SubwayInformation.values()) {
             LineRepository.addLine(new Line(subwayInformation.getLine()));
             initSubwayStations(subwayInformation.getStations());
+            initEdgeWeight(subwayInformation);
         }
     }
 
     private void initSubwayStations(List<String> stations) {
         for (String station : stations) {
             StationRepository.addStation(new Station(station));
+            findShortestPath.addVertex(station);
+        }
+    }
+
+    private void initEdgeWeight(SubwayInformation subwayInformation) {
+        for (int i = 0; i < subwayInformation.getTimes().size(); i++) {
+            findShortestPath.addTimeEdgeWeight(subwayInformation.getStations().get(i),
+                    subwayInformation.getStations().get(i + 1), subwayInformation.getTimes().get(i));
+            findShortestPath.addDistanceEdgeWeight(subwayInformation.getStations().get(i),
+                    subwayInformation.getStations().get(i + 1), subwayInformation.getDistances().get(i));
         }
     }
 
