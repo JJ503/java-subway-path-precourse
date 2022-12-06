@@ -26,6 +26,12 @@ public class SubwayPathController {
 
     private void initSubwayStations(List<String> stations) {
         for (String station : stations) {
+            addStationIfNotExist(station);
+        }
+    }
+
+    private void addStationIfNotExist(String station) {
+        if (StationRepository.isNotExistStation(station)) {
             StationRepository.addStation(new Station(station));
             findShortestPath.addVertex(station);
         }
