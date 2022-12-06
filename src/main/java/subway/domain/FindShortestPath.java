@@ -27,4 +27,9 @@ public class FindShortestPath {
         DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(timeGraph);
         return dijkstraShortestPath.getPath(station1, station2).getVertexList();
     }
+
+    public List<String> getShortestPathByDistance(String station1, String station2) {
+        DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(distanceGraph);
+        return dijkstraShortestPath.getPath(station1, station2).getVertexList();
+    }
 }

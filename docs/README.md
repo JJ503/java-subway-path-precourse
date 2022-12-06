@@ -96,7 +96,7 @@
 - [x]  시간에 대한 edgeWeight 생성
 - [x]  거리에 대한 edgeWeight 생성
 - [x]  시간에 대한 최단 경로 결과 반환
-- [ ]  거리에 대한 최단 경로 결과 반환
+- [x]  거리에 대한 최단 경로 결과 반환
 
 
 ### StationRepository
