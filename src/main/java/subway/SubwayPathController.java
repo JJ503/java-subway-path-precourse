@@ -1,21 +1,32 @@
 package subway;
 
-import subway.domain.LineRepository;
-import subway.domain.StationRepository;
+import subway.domain.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class SubwayPathController {
     private final Scanner scanner;
-    private final StationRepository stationRepository;
-    private final LineRepository lineRepository;
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
+    private FindShortestPath findShortestPath = new FindShortestPath();
 
     SubwayPathController(Scanner scanner) {
         this.scanner = scanner;
-        stationRepository = new StationRepository();
-        lineRepository = new LineRepository();
+        initSubwayInformation();
+    }
+
+    private void initSubwayInformation() {
+        for (SubwayInformation subwayInformation : SubwayInformation.values()) {
+            LineRepository.addLine(new Line(subwayInformation.getLine()));
+            initSubwayStations(subwayInformation.getStations());
+        }
+    }
+
+    private void initSubwayStations(List<String> stations) {
+        for (String station : stations) {
+            StationRepository.addStation(new Station(station));
+        }
     }
 
     public void startSearchSubwayPath() {
