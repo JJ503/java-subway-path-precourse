@@ -16,7 +16,7 @@ public enum PathMenu {
     }
 
     public String getMenuMessage() {
-        return String.format("%s. %s\n", option, menu);
+        return String.format("%s. %s", option, menu);
     }
 
     public static PathMenu getMenu(String option) {
