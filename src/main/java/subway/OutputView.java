@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class OutputView {
-    private static final String MAIN_MENU = "## 메인 화면";
-    private static final String PATH_MENU = "## 경로 기준";
-    private static final String RESULT = "## 조회 결과";
+    private static final String MAIN_MENU = "\n## 메인 화면";
+    private static final String PATH_MENU = "\n## 경로 기준";
+    private static final String RESULT = "\n## 조회 결과";
     private static final String INFO_TAG = "[INFO] %s\n";
     private static final String DIVIDE_LINE = "---";
     private static final String TOTAL_DISTANCE = "총 거리: %dkm";
@@ -30,8 +30,8 @@ public class OutputView {
         }
     }
 
-    public void printPathResult(List<String> path, int distance, int time) {
-        List<String> values = weightToStringFormat(distance, time);
+    public void printPathResult(List<String> path, List<Integer> weights) {
+        List<String> values = weightToStringFormat(weights);
         values = Stream.concat(values.stream(), path.stream())
                 .collect(Collectors.toList());
 
@@ -41,7 +41,10 @@ public class OutputView {
         }
     }
 
-    private List<String> weightToStringFormat(int distance, int time) {
+    private List<String> weightToStringFormat(List<Integer> weights) {
+        int distance = weights.get(0);
+        int time = weights.get(1);
+
         return Arrays.asList(DIVIDE_LINE, String.format(TOTAL_DISTANCE, distance),
                 String.format(TOTAL_TIME, time), DIVIDE_LINE);
     }
