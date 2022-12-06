@@ -87,10 +87,18 @@ public class SubwayPathController {
             return true;
         }
 
-        List<String> paths = selectFindStation(pathMenu);
+        List<String> paths = validatePaths(selectFindStation(pathMenu));
         List<Integer> weights = SectionRepository.getTotalWeight(paths);
         outputView.printPathResult(paths, weights);
         return false;
+    }
+
+    private List<String> validatePaths(List<String> paths) {
+        if (paths == null) {
+            ExceptionMessage.NO_RESULT_CAN_BE_FOUND.throwException();
+        }
+
+        return paths;
     }
 
     private List<String> selectFindStation(PathMenu pathMenu) {
