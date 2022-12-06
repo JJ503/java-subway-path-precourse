@@ -2,6 +2,7 @@ package subway;
 
 import subway.domain.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,10 +40,13 @@ public class SubwayPathController {
 
     private void initEdgeWeight(SubwayInformation subwayInformation) {
         for (int i = 0; i < subwayInformation.getTimes().size(); i++) {
-            findShortestPath.addTimeEdgeWeight(subwayInformation.getStations().get(i),
-                    subwayInformation.getStations().get(i + 1), subwayInformation.getTimes().get(i));
-            findShortestPath.addDistanceEdgeWeight(subwayInformation.getStations().get(i),
-                    subwayInformation.getStations().get(i + 1), subwayInformation.getDistances().get(i));
+            String station1 = subwayInformation.getStations().get(i);
+            String station2 = subwayInformation.getStations().get(i + 1);
+            int time = subwayInformation.getTimes().get(i);
+            int distance = subwayInformation.getDistances().get(i);
+
+            findShortestPath.addEdgeWeight(station1, station2, distance, time);
+            SectionRepository.addSection(new Section(Arrays.asList(station1, station2), time, distance));
         }
     }
 
