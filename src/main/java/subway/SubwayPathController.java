@@ -19,10 +19,20 @@ public class SubwayPathController {
     }
 
     public void startSearchSubwayPath() {
-        MainMenu menu;
-        do {
-            menu = validateMainMenu(selectMenu());
-        } while (menu != MainMenu.MAIN_MENU2);
+        boolean menuState = true;
+
+        while (menuState) {
+            menuState = selectMenuResult();
+        }
+    }
+
+    private boolean selectMenuResult() {
+        MainMenu menu = validateMainMenu(selectMenu());
+        if (menu.equals(MainMenu.MAIN_MENU1)) {
+
+        }
+
+        return false;
     }
 
     private String selectMenu() {
