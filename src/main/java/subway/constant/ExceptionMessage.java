@@ -1,4 +1,4 @@
-package subway;
+package subway.constant;
 
 public enum ExceptionMessage {
     INPUT_NONE("값을 입력해 주세요."),

@@ -1,15 +1,16 @@
-package subway;
+package subway.constant;
 
 import java.util.Arrays;
 
-public enum MainMenu {
-    MAIN_MENU1("1", "경로 조회"),
-    MAIN_MENU2("Q", "종료");
+public enum PathMenu {
+    PATH_MENU1("1", "최단 거리"),
+    PATH_MENU2("2", "최소 시간"),
+    PATH_MENU3("B", "돌아가기");
 
     private final String option;
     private final String menu;
 
-    MainMenu(String option, String menu) {
+    PathMenu(String option, String menu) {
         this.option = option;
         this.menu = menu;
     }
@@ -18,7 +19,7 @@ public enum MainMenu {
         return String.format("%s. %s", option, menu);
     }
 
-    public static MainMenu getMenu(String option) {
+    public static PathMenu getMenu(String option) {
         return Arrays.stream(values())
                 .filter(value -> value.option.equals(option))
                 .findAny()

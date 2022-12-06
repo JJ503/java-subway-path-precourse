@@ -1,4 +1,7 @@
-package subway;
+package subway.view;
+
+import subway.constant.MainMenu;
+import subway.constant.PathMenu;
 
 import java.util.Arrays;
 import java.util.List;
