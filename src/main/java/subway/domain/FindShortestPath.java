@@ -11,4 +11,8 @@ public class FindShortestPath {
         timeGraph.addVertex(station);
         distanceGraph.addVertex(station);
     }
+
+    public void addTimeEdgeWeight(String station1, String station2, int timeWeight) {
+        timeGraph.setEdgeWeight(timeGraph.addEdge(station1, station2), timeWeight);
+    }
 }
