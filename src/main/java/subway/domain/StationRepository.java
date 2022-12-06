@@ -16,6 +16,10 @@ public class StationRepository {
         stations.add(station);
     }
 
+    public static boolean isNotExistStation(String name) {
+        return stations.stream().noneMatch(station -> Objects.equals(station.getName(), name));
+    }
+
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
