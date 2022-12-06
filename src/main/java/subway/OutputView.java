@@ -1,7 +1,5 @@
 package subway;
 
-import jdk.jfr.internal.tool.Main;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
