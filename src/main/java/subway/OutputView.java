@@ -3,8 +3,8 @@ package subway;
 import jdk.jfr.internal.tool.Main;
 
 public class OutputView {
-    private static final String MAIN_MENU = "## 메인 화면\n";
-    private static final String PATH_MENU = "## 경로 기준\n";
+    private static final String MAIN_MENU = "## 메인 화면";
+    private static final String PATH_MENU = "## 경로 기준";
 
     public void printMainMenu() {
         System.out.println(MAIN_MENU);
